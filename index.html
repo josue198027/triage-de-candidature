@@ -10,111 +10,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
   :root{
-    --ink:#1B1E2B;
-    --ink-soft:#4A4E60;
-    --canvas:#E7E4DC;
-    --card:#FCFBF8;
-    --line:#D7D2C7;
-    --line-soft:#E5E1D7;
-    --cold:#5E7A92;
-    --good:#3F7A5E;
-    --gap:#B0533F;
-    --gold:#BE8A24;
-    --gold-soft:#F0E2BE;
+    --ink:#1B1E2B;--ink-soft:#4A4E60;--canvas:#E7E4DC;--card:#FCFBF8;
+    --line:#D7D2C7;--line-soft:#E5E1D7;--cold:#5E7A92;--good:#3F7A5E;
+    --gap:#B0533F;--gold:#BE8A24;--gold-soft:#F0E2BE;
     --shadow:0 1px 2px rgba(27,30,43,.05), 0 12px 32px -16px rgba(27,30,43,.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    background:var(--canvas);
-    color:var(--ink);
-    line-height:1.5;
-    min-height:100vh;
-    padding:clamp(16px,4vw,48px);
-  }
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--canvas);color:var(--ink);
+    line-height:1.5;min-height:100vh;padding:clamp(16px,4vw,48px)}
   .wrap{max-width:1080px;margin:0 auto}
 
-  /* ---------- Header ---------- */
-  header{
-    display:flex;justify-content:space-between;align-items:flex-end;
-    gap:24px;flex-wrap:wrap;
-    padding-bottom:20px;margin-bottom:32px;
-    border-bottom:1.5px solid var(--ink);
-  }
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+    padding-bottom:20px;margin-bottom:32px;border-bottom:1.5px solid var(--ink)}
   .brand{display:flex;flex-direction:column;gap:6px}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--ink-soft);
-  }
-  .brand h1{
-    font-family:'Fraunces',serif;
-    font-weight:600;font-size:clamp(34px,5.5vw,52px);
-    line-height:.95;letter-spacing:-.01em;
-  }
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft)}
+  .brand h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,5.5vw,52px);
+    line-height:.95;letter-spacing:-.01em}
   .brand h1 em{font-style:italic;font-weight:400}
-  .tagline{
-    max-width:300px;text-align:right;
-    font-size:13px;color:var(--ink-soft);
-  }
+  .tagline{max-width:300px;text-align:right;font-size:13px;color:var(--ink-soft)}
 
-  /* ---------- Setup grid ---------- */
-  .setup{
-    display:grid;grid-template-columns:1.1fr .9fr;gap:20px;
-    margin-bottom:24px;
-  }
+  .setup{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;margin-bottom:24px}
   @media(max-width:760px){.setup{grid-template-columns:1fr}}
-  .panel{
-    background:var(--card);border:1px solid var(--line);
-    border-radius:14px;padding:20px;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;
-  }
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column}
   .panel-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
-  .num{
-    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
-    color:var(--gold);
-  }
+  .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--gold)}
   .panel-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
   label.field{font-size:12px;color:var(--ink-soft);display:block;margin-bottom:6px}
-  textarea,input[type=text]{
-    width:100%;font-family:inherit;font-size:14px;color:var(--ink);
-    background:#fff;border:1px solid var(--line);border-radius:9px;
-    padding:11px 12px;resize:vertical;transition:border-color .15s,box-shadow .15s;
-  }
-  textarea:focus,input[type=text]:focus{
-    outline:none;border-color:var(--ink);
-    box-shadow:0 0 0 3px rgba(27,30,43,.08);
-  }
+  textarea,input[type=text]{width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 12px;resize:vertical;
+    transition:border-color .15s,box-shadow .15s}
+  textarea:focus,input[type=text]:focus{outline:none;border-color:var(--ink);
+    box-shadow:0 0 0 3px rgba(27,30,43,.08)}
   #offre{min-height:230px;flex:1}
 
-  /* ---------- CV intake ---------- */
   .intake-row{display:flex;gap:8px;margin-bottom:10px}
   .intake-row input[type=text]{flex:1}
-  .btn{
-    font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;
-    border-radius:9px;border:1px solid var(--ink);
-    padding:9px 14px;background:transparent;color:var(--ink);
-    transition:background .15s,color .15s,transform .05s;
-    white-space:nowrap;
-  }
+  .btn{font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;border-radius:9px;
+    border:1px solid var(--ink);padding:9px 14px;background:transparent;color:var(--ink);
+    transition:background .15s,color .15s,transform .05s;white-space:nowrap}
   .btn:hover{background:var(--ink);color:#fff}
   .btn:active{transform:translateY(1px)}
-  .btn[disabled]{opacity:.4;cursor:not-allowed}
   .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-  .drop{
-    border:1.5px dashed var(--line);border-radius:10px;
-    padding:14px;text-align:center;font-size:13px;color:var(--ink-soft);
-    cursor:pointer;transition:border-color .15s,background .15s;margin-bottom:12px;
-  }
+  .drop{border:1.5px dashed var(--line);border-radius:10px;padding:14px;text-align:center;
+    font-size:13px;color:var(--ink-soft);cursor:pointer;transition:border-color .15s,background .15s;margin-bottom:12px}
   .drop:hover,.drop.over{border-color:var(--gold);background:#fff}
   .drop b{color:var(--ink)}
   .cv-list{display:flex;flex-direction:column;gap:7px;margin-top:auto}
-  .cv-chip{
-    display:flex;align-items:center;gap:10px;
-    background:#fff;border:1px solid var(--line-soft);border-radius:8px;
-    padding:8px 10px;font-size:13px;
-  }
+  .cv-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line-soft);
+    border-radius:8px;padding:8px 10px;font-size:13px}
   .cv-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--good);flex:none}
   .cv-chip .nm{font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .cv-chip .sz{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft)}
@@ -122,55 +68,37 @@
   .cv-chip .x:hover{color:var(--gap)}
   .empty-note{font-size:12.5px;color:var(--ink-soft);font-style:italic;padding:6px 2px}
 
-  /* ---------- Action bar ---------- */
-  .actionbar{
-    display:flex;gap:12px;align-items:center;flex-wrap:wrap;
-    margin-bottom:36px;
-  }
-  .go{
-    font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;
-    background:var(--ink);color:#fff;border:none;border-radius:11px;
-    padding:14px 26px;display:inline-flex;align-items:center;gap:10px;
-    transition:transform .05s,box-shadow .2s,opacity .2s;
-    box-shadow:0 8px 20px -10px rgba(27,30,43,.6);
-  }
+  .actionbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:36px}
+  .go{font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;background:var(--ink);color:#fff;
+    border:none;border-radius:11px;padding:14px 26px;display:inline-flex;align-items:center;gap:10px;
+    transition:transform .05s,box-shadow .2s,opacity .2s;box-shadow:0 8px 20px -10px rgba(27,30,43,.6)}
   .go:hover{box-shadow:0 12px 26px -10px rgba(27,30,43,.7)}
   .go:active{transform:translateY(1px)}
   .go[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
   .go .pulse{width:9px;height:9px;border-radius:50%;background:var(--gold)}
-  .link-btn{background:none;border:none;color:var(--ink-soft);font-family:inherit;
-    font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .link-btn{background:none;border:none;color:var(--ink-soft);font-family:inherit;font-size:13px;
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px}
   .link-btn:hover{color:var(--ink)}
   .status{font-size:13px;color:var(--ink-soft);font-family:'JetBrains Mono',monospace}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--good);border:1px solid rgba(63,122,94,.35);background:rgba(63,122,94,.08);
+    padding:4px 9px;border-radius:20px}
 
-  /* ---------- Results ---------- */
-  .results-head{
-    display:flex;align-items:baseline;gap:14px;margin-bottom:18px;
-  }
+  .results-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
   .results-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:24px}
   .results-head .count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft)}
 
-  .candidate{
-    background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:22px;margin-bottom:16px;box-shadow:var(--shadow);
-    position:relative;overflow:hidden;
-  }
+  .candidate{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+    margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
   .candidate.top{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),var(--shadow)}
-  .candidate.top::before{
-    content:"PRÉSÉLECTION";position:absolute;top:14px;right:-34px;
-    background:var(--gold);color:#fff;font-family:'JetBrains Mono',monospace;
-    font-size:10px;letter-spacing:.15em;padding:4px 40px;transform:rotate(45deg);
-  }
+  .candidate.top::before{content:"PRÉSÉLECTION";position:absolute;top:14px;right:-34px;background:var(--gold);
+    color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;padding:4px 40px;transform:rotate(45deg)}
   .cand-top{display:flex;gap:20px;align-items:center}
   @media(max-width:600px){.cand-top{flex-direction:column;align-items:flex-start;gap:14px}}
 
-  /* temperature dial */
   .dial{flex:none;width:96px;height:96px;position:relative}
   .dial svg{transform:rotate(-90deg)}
-  .dial .val{
-    position:absolute;inset:0;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;
-  }
+  .dial .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .dial .num{font-family:'Fraunces',serif;font-weight:600;font-size:27px;line-height:1}
   .dial .pct{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-soft);margin-top:1px}
 
@@ -178,7 +106,6 @@
   .rank{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--ink-soft);text-transform:uppercase}
   .cand-id h3{font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin:2px 0 8px}
   .synthese{font-size:14px;color:var(--ink-soft);max-width:52ch}
-
   .subscores{display:flex;gap:18px;flex-wrap:wrap;margin-top:4px}
   .sub{display:flex;flex-direction:column;gap:3px}
   .sub .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
@@ -196,16 +123,11 @@
   .tag.gap{background:rgba(176,83,63,.12);color:var(--gap)}
   .meta-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--ink-soft)}
   .meta-row b{color:var(--ink);font-weight:600}
-
-  .loading-card{display:flex;align-items:center;gap:14px;color:var(--ink-soft);font-size:14px}
-  .spin{width:18px;height:18px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
   .err{background:rgba(176,83,63,.08);border:1px solid rgba(176,83,63,.3);color:var(--gap);
     border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px}
 
-  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
-    font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
@@ -215,39 +137,30 @@
 
   <header>
     <div class="brand">
-      <span class="eyebrow">Présélection assistée par IA</span>
+      <span class="eyebrow">Présélection — évaluation locale</span>
       <h1>Triage<em>.</em></h1>
     </div>
-    <p class="tagline">Collez une offre, ajoutez des CV, obtenez un classement motivé des candidats — points forts et lacunes compris.</p>
+    <p class="tagline">Collez une offre, ajoutez des CV, obtenez un classement motivé — tout est calculé dans votre navigateur.</p>
   </header>
 
   <div class="setup">
-    <!-- Offre -->
     <section class="panel">
       <div class="panel-head"><span class="num">01</span><h2>Le poste</h2></div>
       <label class="field" for="offre">Description complète de l'offre</label>
-      <textarea id="offre" placeholder="Ex. : Nous recrutons un développeur Python orienté Data / Machine Learning. Missions : déployer des modèles ML, manipuler les données avec Pandas et SQL, développer des API avec FastAPI. Profil : 3 ans d'expérience minimum, Scikit-Learn, NLP, PostgreSQL, diplôme en informatique, français courant et anglais professionnel."></textarea>
+      <textarea id="offre" placeholder="Ex. : Nous recrutons un développeur Python orienté Data / Machine Learning. Profil : 3 ans d'expérience, Scikit-Learn, NLP, PostgreSQL, FastAPI, diplôme en informatique, français courant et anglais professionnel."></textarea>
     </section>
 
-    <!-- CVs -->
     <section class="panel">
       <div class="panel-head"><span class="num">02</span><h2>Les candidats</h2></div>
-
       <label class="field" for="cvName">Ajouter un CV par texte</label>
-      <div class="intake-row">
-        <input type="text" id="cvName" placeholder="Nom du candidat">
-      </div>
+      <div class="intake-row"><input type="text" id="cvName" placeholder="Nom du candidat"></div>
       <textarea id="cvText" placeholder="Collez ici le contenu du CV…" style="min-height:90px"></textarea>
       <div style="margin:10px 0 14px"><button class="btn" id="addText">+ Ajouter ce CV</button></div>
-
       <div class="drop" id="drop">
         <b>Déposez des fichiers</b> ou cliquez<br><span style="font-size:12px">PDF ou TXT — plusieurs à la fois</span>
         <input type="file" id="file" accept=".pdf,.txt" multiple class="visually-hidden">
       </div>
-
-      <div class="cv-list" id="cvList">
-        <p class="empty-note">Aucun CV ajouté pour l'instant.</p>
-      </div>
+      <div class="cv-list" id="cvList"><p class="empty-note">Aucun CV ajouté pour l'instant.</p></div>
     </section>
   </div>
 
@@ -255,6 +168,7 @@
     <button class="go" id="run"><span class="pulse"></span>Évaluer les candidatures</button>
     <button class="link-btn" id="demo">Charger un exemple</button>
     <button class="link-btn" id="reset">Tout effacer</button>
+    <span class="badge">100 % hors-ligne</span>
     <span class="status" id="status"></span>
   </div>
 
@@ -262,251 +176,266 @@
   <section id="results"></section>
 
   <footer>
-    <span>Triage — outil de présélection. Les scores assistent la décision, ils ne la remplacent pas.</span>
+    <span>Triage — évaluation locale par mots-clés et similarité de texte. Les scores assistent la décision, ils ne la remplacent pas.</span>
     <span>Vérifiez toujours les CV retenus manuellement.</span>
   </footer>
 </div>
 
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
+/* =================================================================
+   MOTEUR D'ÉVALUATION LOCAL  (porté depuis le projet Python)
+   ================================================================= */
+
+// --- Ontologie de compétences : forme canonique -> variantes ---
+const ONTOLOGIE = {
+  "python":["python"],
+  "pandas":["pandas"],
+  "numpy":["numpy"],
+  "scikit-learn":["scikit-learn","scikit learn","sklearn"],
+  "spacy":["spacy"],
+  "nlp":["nlp","traitement du langage naturel","tln","traitement automatique du langage"],
+  "machine learning":["machine learning","apprentissage automatique","apprentissage machine"],
+  "deep learning":["deep learning","apprentissage profond","réseaux de neurones"],
+  "sentence transformers":["sentence transformers","sentence-transformers"],
+  "fastapi":["fastapi","fast api"],
+  "flask":["flask"],
+  "docker":["docker","conteneurisation"],
+  "postgresql":["postgresql","postgres"],
+  "sql":["sql"],
+  "javascript":["javascript"],
+  "react":["react","react.js","reactjs"],
+  "node.js":["node.js","nodejs"],
+  "power bi":["power bi","powerbi"],
+  "excel":["excel","tableur"],
+  "spark":["spark","apache spark","pyspark"],
+  "git":["git","github","gitlab"]
+};
+const SYN = {};
+for(const [canon,vars] of Object.entries(ONTOLOGIE)) for(const v of vars) SYN[v]=canon;
+
+const DIPLOMES = ["doctorat","phd","maîtrise","master","licence","baccalauréat","mba","dec","bts","dut","ingénieur","diplôme"];
+const CERTIFS  = ["aws","pmp","scrum master","toefl","ielts","cisco","azure","certification","certifié"];
+const LANGUES  = ["français","anglais","espagnol","créole","allemand","italien"];
+
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+
+function extraireCompetences(texte){
+  const t = " "+texte.toLowerCase()+" ";
+  const trouvees = new Set();
+  for(const [variante,canon] of Object.entries(SYN)){
+    if(new RegExp("\\b"+escRe(variante)+"\\b").test(t)) trouvees.add(canon);
+  }
+  return [...trouvees].sort();
+}
+function extraireExperience(texte){
+  const m = [...texte.toLowerCase().matchAll(/(\d+)\s*an/g)].map(x=>+x[1]);
+  return m.length ? Math.max(...m) : 0;
+}
+function extraireListe(texte,liste){
+  const t = texte.toLowerCase();
+  return liste.filter(d => t.includes(d));
+}
+
+// --- Similarité de texte (sac de mots, accents neutralisés) ---
+const STOP = new Set(("au aux avec ce ces dans de des du elle en et eux il je la le les leur lui ma mais me meme mes moi mon ne nos notre nous on ou par pas pour qu que qui sa se ses son sur ta te tes toi ton tu un une vos votre vous c d j l a as ont est sont etre ans an plus tres afin ainsi chez").split(" "));
+function jetons(s){
+  return (s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").match(/[a-z0-9]+/g)||[])
+    .filter(w => w.length>1 && !STOP.has(w));
+}
+function vecteur(s){const m={};for(const w of jetons(s)) m[w]=(m[w]||0)+1;return m;}
+function cosinus(a,b){
+  let dot=0,na=0,nb=0;
+  for(const k in a){ if(b[k]) dot+=a[k]*b[k]; na+=a[k]*a[k]; }
+  for(const k in b){ nb+=b[k]*b[k]; }
+  return (na&&nb) ? dot/Math.sqrt(na*nb) : 0;
+}
+
+const POIDS = { competences:0.45, semantique:0.35, experience:0.20 };
+
+function evaluerCandidat(offreCtx, cvTexte){
+  const comp = extraireCompetences(cvTexte);
+  const exp  = extraireExperience(cvTexte);
+
+  const sComp = offreCtx.competences.length
+      ? comp.filter(c=>offreCtx.competences.includes(c)).length / offreCtx.competences.length
+      : (comp.length?1:0);
+  const sExp  = offreCtx.experience ? Math.min(exp/offreCtx.experience,1) : 1;
+  const sSem  = cosinus(offreCtx.vecteur, vecteur(cvTexte));
+  const sSemAff = Math.min(1, sSem*1.4); // léger ajustement d'affichage
+
+  const global = POIDS.competences*sComp + POIDS.semantique*sSemAff + POIDS.experience*sExp;
+
+  const presents = comp.filter(c=>offreCtx.competences.includes(c));
+  const manquants = offreCtx.competences.filter(c=>!comp.includes(c));
+
+  return {
+    score_global: Math.round(global*100),
+    score_competences: Math.round(sComp*100),
+    score_experience: Math.round(sExp*100),
+    score_semantique: Math.round(sSemAff*100),
+    points_forts: presents,
+    lacunes: manquants,
+    diplomes: extraireListe(cvTexte, DIPLOMES),
+    langues: extraireListe(cvTexte, LANGUES),
+    experience_ans: exp,
+    synthese: synthese(Math.round(global*100), presents.length, offreCtx.competences.length, exp, manquants.length)
+  };
+}
+
+function synthese(score, nPres, nTotal, exp, nManq){
+  const niveau = score>=80?"très solide" : score>=65?"solide" : score>=45?"partiel" : "faible";
+  let s = `Profil ${niveau} : ${nPres}/${nTotal||"—"} compétences attendues couvertes, ${exp} an(s) d'expérience.`;
+  if(nManq>0) s += ` ${nManq} exigence(s) restent à confirmer.`;
+  return s;
+}
+
+function contexteOffre(offre){
+  return {
+    competences: extraireCompetences(offre),
+    experience: extraireExperience(offre),
+    vecteur: vecteur(offre)
+  };
+}
+
+/* =================================================================
+   INTERFACE
+   ================================================================= */
 const state = { cvs: [] };
 let nextId = 1;
-
 const $ = s => document.querySelector(s);
-const cvListEl = $("#cvList");
-const statusEl = $("#status");
-const resultsEl = $("#results");
-const errBox = $("#errBox");
+const cvListEl=$("#cvList"), statusEl=$("#status"), resultsEl=$("#results"), errBox=$("#errBox");
 
-/* ---------------- CV management ---------------- */
 function renderCvList(){
-  if(state.cvs.length === 0){
-    cvListEl.innerHTML = '<p class="empty-note">Aucun CV ajouté pour l\'instant.</p>';
-    return;
-  }
-  cvListEl.innerHTML = state.cvs.map(cv => `
-    <div class="cv-chip">
-      <span class="dot"></span>
+  if(!state.cvs.length){ cvListEl.innerHTML='<p class="empty-note">Aucun CV ajouté pour l\'instant.</p>'; return; }
+  cvListEl.innerHTML = state.cvs.map(cv=>`
+    <div class="cv-chip"><span class="dot"></span>
       <span class="nm">${escapeHtml(cv.name)}</span>
       <span class="sz">${(cv.text.length/1000).toFixed(1)}k</span>
-      <button class="x" data-id="${cv.id}" title="Retirer">×</button>
-    </div>`).join("");
-  cvListEl.querySelectorAll(".x").forEach(b =>
-    b.onclick = () => { state.cvs = state.cvs.filter(c => c.id != b.dataset.id); renderCvList(); });
+      <button class="x" data-id="${cv.id}" title="Retirer">×</button></div>`).join("");
+  cvListEl.querySelectorAll(".x").forEach(b=>b.onclick=()=>{state.cvs=state.cvs.filter(c=>c.id!=b.dataset.id);renderCvList();});
 }
-
-function addCv(name, text){
-  text = (text||"").trim();
-  if(!text){ flash("Ce CV est vide."); return; }
-  name = (name||"").trim() || `Candidat ${state.cvs.length+1}`;
-  state.cvs.push({ id: nextId++, name, text });
-  renderCvList();
+function addCv(name,text){
+  text=(text||"").trim();
+  if(!text){flash("Ce CV est vide.");return;}
+  name=(name||"").trim()||`Candidat ${state.cvs.length+1}`;
+  state.cvs.push({id:nextId++,name,text}); renderCvList();
 }
+$("#addText").onclick=()=>{addCv($("#cvName").value,$("#cvText").value);$("#cvName").value="";$("#cvText").value="";};
 
-$("#addText").onclick = () => {
-  addCv($("#cvName").value, $("#cvText").value);
-  $("#cvName").value = ""; $("#cvText").value = "";
-};
-
-/* ---------------- File upload ---------------- */
-const drop = $("#drop"), fileInput = $("#file");
-drop.onclick = () => fileInput.click();
-drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
-drop.ondragleave = () => drop.classList.remove("over");
-drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); handleFiles(e.dataTransfer.files); };
-fileInput.onchange = () => handleFiles(fileInput.files);
+const drop=$("#drop"),fileInput=$("#file");
+drop.onclick=()=>fileInput.click();
+drop.ondragover=e=>{e.preventDefault();drop.classList.add("over");};
+drop.ondragleave=()=>drop.classList.remove("over");
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove("over");handleFiles(e.dataTransfer.files);};
+fileInput.onchange=()=>handleFiles(fileInput.files);
 
 async function handleFiles(files){
   for(const f of files){
     try{
       const text = f.name.toLowerCase().endsWith(".pdf") ? await readPdf(f) : await f.text();
-      addCv(f.name.replace(/\.[^.]+$/,""), text);
+      addCv(f.name.replace(/\.[^.]+$/,""),text);
     }catch(err){ flash(`Lecture impossible : ${f.name}`); }
   }
-  fileInput.value = "";
+  fileInput.value="";
 }
-
 async function readPdf(file){
-  const buf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data:buf}).promise;
-  let out = "";
-  for(let p=1; p<=pdf.numPages; p++){
-    const page = await pdf.getPage(p);
-    const content = await page.getTextContent();
-    out += content.items.map(i => i.str).join(" ") + "\n";
+  if(!window.pdfjsLib) throw new Error("pdf.js indisponible");
+  const buf=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+  let out="";
+  for(let p=1;p<=pdf.numPages;p++){
+    const page=await pdf.getPage(p);
+    const c=await page.getTextContent();
+    out+=c.items.map(i=>i.str).join(" ")+"\n";
   }
   return out;
 }
 
-/* ---------------- Evaluation ---------------- */
-$("#run").onclick = runEvaluation;
+$("#run").onclick=()=>{
+  errBox.innerHTML="";
+  const offre=$("#offre").value.trim();
+  if(!offre){flash("Saisissez d'abord la description du poste.");return;}
+  if(!state.cvs.length){flash("Ajoutez au moins un CV.");return;}
 
-async function runEvaluation(){
-  errBox.innerHTML = "";
-  const offre = $("#offre").value.trim();
-  if(!offre){ flash("Saisissez d'abord la description du poste."); return; }
-  if(state.cvs.length === 0){ flash("Ajoutez au moins un CV."); return; }
+  statusEl.textContent="calcul en cours…";
+  // léger délai pour laisser l'UI rafraîchir avant le calcul
+  setTimeout(()=>{
+    const ctx=contexteOffre(offre);
+    const items=state.cvs.map(cv=>({name:cv.name, ok:true, ...evaluerCandidat(ctx,cv.text)}));
+    statusEl.textContent="";
+    renderResults(items);
+  },30);
+};
 
-  $("#run").disabled = true;
-  resultsEl.innerHTML = "";
-  const cvs = [...state.cvs];
-  let done = 0;
-  statusEl.textContent = `analyse 0/${cvs.length}`;
-
-  const settled = await Promise.all(cvs.map(async cv => {
-    try{
-      const r = await evaluateOne(offre, cv.text);
-      done++; statusEl.textContent = `analyse ${done}/${cvs.length}`;
-      return { name: cv.name, ok:true, ...r };
-    }catch(err){
-      done++; statusEl.textContent = `analyse ${done}/${cvs.length}`;
-      return { name: cv.name, ok:false, error: err.message };
-    }
-  }));
-
-  statusEl.textContent = "";
-  $("#run").disabled = false;
-  renderResults(settled);
-}
-
-async function evaluateOne(offre, cvText){
-  const system = `Tu es un assistant de présélection RH rigoureux et impartial. Tu compares un CV à une offre d'emploi et tu évalues la compatibilité.
-Réponds UNIQUEMENT avec un objet JSON valide, sans aucun texte avant ou après, sans balises de code.
-Schéma exact :
-{
-  "score_global": <entier 0-100>,
-  "score_competences": <entier 0-100>,
-  "score_experience": <entier 0-100>,
-  "score_semantique": <entier 0-100>,
-  "points_forts": [<compétences/atouts du candidat présents dans l'offre, en français, max 8>],
-  "lacunes": [<exigences de l'offre absentes du CV, en français, max 8>],
-  "diplomes": [<diplômes repérés>],
-  "langues": [<langues repérées>],
-  "synthese": "<2 phrases maximum, en français, jugement nuancé>"
-}
-Sois honnête : un profil faible doit avoir un score bas.`;
-
-  const user = `OFFRE D'EMPLOI :\n${offre}\n\n---\n\nCV DU CANDIDAT :\n${cvText}\n\nÉvalue la compatibilité selon le schéma.`;
-
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({
-      model:"claude-sonnet-4-6",
-      max_tokens:1000,
-      system,
-      messages:[{ role:"user", content:user }]
-    })
-  });
-  if(!resp.ok) throw new Error("API "+resp.status);
-  const data = await resp.json();
-  const raw = (data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("");
-  const clean = raw.replace(/```json|```/g,"").trim();
-  const parsed = JSON.parse(clean);
-  ["points_forts","lacunes","diplomes","langues"].forEach(k => { if(!Array.isArray(parsed[k])) parsed[k]=[]; });
-  return parsed;
-}
-
-/* ---------------- Rendering ---------------- */
 function renderResults(items){
-  const ok = items.filter(i=>i.ok).sort((a,b)=>b.score_global-a.score_global);
-  const failed = items.filter(i=>!i.ok);
-
-  let html = `<div class="results-head"><h2>Classement</h2><span class="count">${ok.length} candidat(s) évalué(s)</span></div>`;
-
-  failed.forEach(f => { html += `<div class="err"><b>${escapeHtml(f.name)}</b> — évaluation impossible (${escapeHtml(f.error||"erreur")}).</div>`; });
-
-  ok.forEach((c,i) => {
-    const rank = i+1;
-    const col = scoreColor(c.score_global);
-    html += `
-    <article class="candidate ${rank===1?'top':''}">
-      <div class="cand-top">
-        ${dial(c.score_global, col)}
-        <div class="cand-id">
-          <div class="rank">Rang ${rank}</div>
-          <h3>${escapeHtml(c.name)}</h3>
-          <p class="synthese">${escapeHtml(c.synthese||"")}</p>
+  const ok=items.filter(i=>i.ok).sort((a,b)=>b.score_global-a.score_global);
+  let html=`<div class="results-head"><h2>Classement</h2><span class="count">${ok.length} candidat(s) évalué(s)</span></div>`;
+  ok.forEach((c,i)=>{
+    const rank=i+1, col=scoreColor(c.score_global);
+    html+=`<article class="candidate ${rank===1?'top':''}">
+      <div class="cand-top">${dial(c.score_global,col)}
+        <div class="cand-id"><div class="rank">Rang ${rank}</div><h3>${escapeHtml(c.name)}</h3>
+          <p class="synthese">${escapeHtml(c.synthese)}</p>
           <div class="subscores">
-            ${sub("Compétences", c.score_competences)}
-            ${sub("Expérience", c.score_experience)}
-            ${sub("Sémantique", c.score_semantique)}
-          </div>
-        </div>
-      </div>
+            ${sub("Compétences",c.score_competences)}
+            ${sub("Expérience",c.score_experience)}
+            ${sub("Similarité",c.score_semantique)}
+          </div></div></div>
       <div class="divider"></div>
       <div class="tags-block">
-        <div>
-          <h4>✓ Points forts</h4>
-          <div class="tags">${(c.points_forts.length?c.points_forts:["—"]).map(t=>`<span class="tag good">${escapeHtml(t)}</span>`).join("")}</div>
-        </div>
-        <div>
-          <h4>△ Lacunes</h4>
-          <div class="tags">${(c.lacunes.length?c.lacunes:["Aucune exigence manquante"]).map(t=>`<span class="tag gap">${escapeHtml(t)}</span>`).join("")}</div>
-        </div>
+        <div><h4>✓ Points forts</h4><div class="tags">${(c.points_forts.length?c.points_forts:["—"]).map(t=>`<span class="tag good">${escapeHtml(t)}</span>`).join("")}</div></div>
+        <div><h4>△ Lacunes</h4><div class="tags">${(c.lacunes.length?c.lacunes:["Aucune exigence manquante"]).map(t=>`<span class="tag gap">${escapeHtml(t)}</span>`).join("")}</div></div>
       </div>
-      ${(c.diplomes.length||c.langues.length) ? `<div class="meta-row">
+      ${(c.diplomes.length||c.langues.length)?`<div class="meta-row">
         ${c.diplomes.length?`<span><b>Diplômes :</b> ${c.diplomes.map(escapeHtml).join(", ")}</span>`:""}
         ${c.langues.length?`<span><b>Langues :</b> ${c.langues.map(escapeHtml).join(", ")}</span>`:""}
       </div>`:""}
     </article>`;
   });
-
-  resultsEl.innerHTML = html;
-  resultsEl.scrollIntoView({behavior:"smooth", block:"start"});
+  resultsEl.innerHTML=html;
+  resultsEl.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function dial(score, col){
-  const r=42, C=2*Math.PI*r, off=C*(1-score/100);
-  return `<div class="dial">
-    <svg width="96" height="96" viewBox="0 0 96 96">
-      <circle cx="48" cy="48" r="${r}" fill="none" stroke="var(--line-soft)" stroke-width="7"/>
-      <circle cx="48" cy="48" r="${r}" fill="none" stroke="${col}" stroke-width="7"
-        stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${off}"/>
-    </svg>
-    <div class="val"><span class="num" style="color:${col}">${score}</span><span class="pct">/ 100</span></div>
-  </div>`;
+function dial(score,col){
+  const r=42,C=2*Math.PI*r,off=C*(1-score/100);
+  return `<div class="dial"><svg width="96" height="96" viewBox="0 0 96 96">
+    <circle cx="48" cy="48" r="${r}" fill="none" stroke="var(--line-soft)" stroke-width="7"/>
+    <circle cx="48" cy="48" r="${r}" fill="none" stroke="${col}" stroke-width="7" stroke-linecap="round"
+      stroke-dasharray="${C}" stroke-dashoffset="${off}"/></svg>
+    <div class="val"><span class="num" style="color:${col}">${score}</span><span class="pct">/ 100</span></div></div>`;
 }
-
-function sub(label, v){
-  v = v==null?0:v;
-  const col = scoreColor(v);
-  return `<div class="sub">
-    <span class="k">${label}</span>
+function sub(label,v){
+  v=v==null?0:v; const col=scoreColor(v);
+  return `<div class="sub"><span class="k">${label}</span>
     <span class="bar"><i style="width:${v}%;background:${col}"></i></span>
-    <span class="v" style="color:${col}">${v}</span>
-  </div>`;
+    <span class="v" style="color:${col}">${v}</span></div>`;
 }
-
-/* temperature: cold slate -> hot gold */
 function scoreColor(s){
-  const stops = [[0,[94,122,146]],[45,[140,140,128]],[72,[201,154,78]],[100,[190,138,36]]];
-  s = Math.max(0,Math.min(100,s));
-  let a=stops[0], b=stops[stops.length-1];
-  for(let i=0;i<stops.length-1;i++){ if(s>=stops[i][0]&&s<=stops[i+1][0]){ a=stops[i]; b=stops[i+1]; break; } }
+  const stops=[[0,[94,122,146]],[45,[140,140,128]],[72,[201,154,78]],[100,[190,138,36]]];
+  s=Math.max(0,Math.min(100,s));
+  let a=stops[0],b=stops[stops.length-1];
+  for(let i=0;i<stops.length-1;i++){if(s>=stops[i][0]&&s<=stops[i+1][0]){a=stops[i];b=stops[i+1];break;}}
   const t=(s-a[0])/((b[0]-a[0])||1);
   const c=a[1].map((v,i)=>Math.round(v+(b[1][i]-v)*t));
   return `rgb(${c[0]},${c[1]},${c[2]})`;
 }
 
-/* ---------------- Utilities ---------------- */
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function flash(msg){ statusEl.textContent = msg; setTimeout(()=>{ if(statusEl.textContent===msg) statusEl.textContent=""; }, 3000); }
+function flash(msg){statusEl.textContent=msg;setTimeout(()=>{if(statusEl.textContent===msg)statusEl.textContent="";},3000);}
 
-$("#reset").onclick = () => {
-  state.cvs = []; renderCvList(); resultsEl.innerHTML=""; errBox.innerHTML="";
-  $("#offre").value=""; $("#cvName").value=""; $("#cvText").value=""; statusEl.textContent="";
-};
+$("#reset").onclick=()=>{state.cvs=[];renderCvList();resultsEl.innerHTML="";errBox.innerHTML="";
+  $("#offre").value="";$("#cvName").value="";$("#cvText").value="";statusEl.textContent="";};
 
-$("#demo").onclick = () => {
-  $("#offre").value = `Nous recrutons un Développeur Python orienté Data / Machine Learning.
+$("#demo").onclick=()=>{
+  $("#offre").value=`Nous recrutons un Développeur Python orienté Data / Machine Learning.
 Missions : concevoir et déployer des modèles de ML en production, manipuler de grands volumes de données avec Pandas et SQL, développer des API avec FastAPI, collaborer sur des projets NLP.
 Profil recherché : au moins 3 ans d'expérience en développement Python, bonne maîtrise de Scikit-Learn et des techniques de NLP, expérience avec PostgreSQL, diplôme en informatique ou science des données, français courant et anglais professionnel.`;
-  state.cvs = [];
-  addCv("Amélie Tremblay", "Développeuse Python avec 5 ans d'expérience en data science. Maîtrise de Pandas, NumPy, Scikit-Learn et spaCy pour le NLP. Déploiement de modèles via FastAPI et Docker. Expérience solide avec PostgreSQL. Maîtrise en intelligence artificielle. Langues : français (maternelle), anglais (courant).");
-  addCv("Karl Dubois", "Développeur web full-stack, 4 ans d'expérience. JavaScript, React, Node.js et un peu de Python. Quelques projets personnels en machine learning avec Scikit-Learn. Bases de données MySQL et MongoDB. Diplôme en génie logiciel. Français, anglais intermédiaire.");
-  addCv("Mathieu Roy", "Analyste financier reconverti dans la data. Excel, Power BI et SQL. Initiation récente à Python et Pandas via une formation en ligne. Aucun projet de machine learning en production. Diplôme en finance. Français, anglais courant.");
+  state.cvs=[];
+  addCv("Amélie Tremblay","Développeuse Python avec 5 ans d'expérience en data science. Maîtrise de Pandas, NumPy, Scikit-Learn et spaCy pour le NLP. Déploiement de modèles via FastAPI et Docker. Expérience solide avec PostgreSQL. Maîtrise en intelligence artificielle. Langues : français (maternelle), anglais (courant).");
+  addCv("Karl Dubois","Développeur web full-stack, 4 ans d'expérience. JavaScript, React, Node.js et un peu de Python. Quelques projets personnels en machine learning avec Scikit-Learn. Bases de données MySQL et MongoDB. Diplôme en génie logiciel. Français, anglais intermédiaire.");
+  addCv("Mathieu Roy","Analyste financier reconverti dans la data. Excel, Power BI et SQL. Initiation récente à Python et Pandas via une formation en ligne. Aucun projet de machine learning en production. Diplôme en finance. Français, anglais courant.");
   flash("Exemple chargé — cliquez sur Évaluer.");
 };
 
